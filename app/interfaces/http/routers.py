@@ -9,7 +9,7 @@ uc = build_use_case()
 
 @limiter.limit("5/minute") 
 @router.get("/health")
-def health():
+def health(request: Request):
     return {"status":"ok"}
 
 @limiter.limit("5/minute") 
