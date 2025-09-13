@@ -2,14 +2,17 @@ from fastapi import APIRouter, UploadFile, File, Request, HTTPException
 from app.application.dto import DirectJson, ClassifyResponse
 from app.bootstrap import build_use_case
 from app.domain.errors import BadRequest
+from app.ratelimiting import limiter
 
 router = APIRouter()
 uc = build_use_case()
 
+@limiter.limit("5/minute") 
 @router.get("/health")
 def health():
     return {"status":"ok"}
 
+@limiter.limit("5/minute") 
 @router.post("/classify", response_model=ClassifyResponse,
              summary="Aceita JSON (subject/body) ou multipart com arquivo .pdf/.txt")
 async def classify(request: Request, file: UploadFile | None = File(None)):
