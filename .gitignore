@@ -1,0 +1,100 @@
+# ===========================
+# Git Ignore — Email Classifier (FastAPI / Python)
+# ===========================
+
+# --- OS & Editor junk ---
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.orig
+*.tmp
+*.bak
+
+# IDEs
+.idea/
+.fleet/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+
+# --- Python build artifacts ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Packaging
+build/
+dist/
+.eggs/
+*.egg-info/
+pip-wheel-metadata/
+
+# Caches
+.cache/
+.pytest_cache/
+.tox/
+.nox/
+.mypy_cache/
+.pyre/
+.pytype/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Coverage / profiling
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.prof
+.profraw
+
+# Logs / PIDs
+logs/
+*.log
+*.pid
+
+# --- Environments ---
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.python-version
+
+# --- App artifacts ---
+# Local databases / temp data
+*.sqlite3
+*.db
+
+# Uploaded / sample test files (keep repo clean)
+samples/*
+!samples/.keep
+
+# --- Node (if you add a tiny UI for tests later) ---
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# --- Docker ---
+# Ignore local override compose files & generated envs
+docker-compose.override.yml
+.dockerignore.local
+.env.docker.local
+
+# --- OS specific ---
+desktop.ini
+
+# --- Misc ---
+# If you export Postman collections, prefer tracking them under /postman/
+# and don't ignore; they are useful for onboarding.
+# postman/*.postman_collection.json
+# postman/*.postman_environment.json
+.venv/
+venv/
+.env
+.env.*
+!.env.example
