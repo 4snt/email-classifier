@@ -18,3 +18,6 @@ class ClassificationResult:
     confidence: float
     reason: str
     suggested_reply: Optional[str] = None
+    total_tokens: Optional[int] = None
+    prompt_tokens: Optional[int] = None
+    completion_tokens: Optional[int] = None

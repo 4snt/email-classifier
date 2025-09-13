@@ -12,3 +12,9 @@ class ClassifyResponse(BaseModel):
     confidence: float
     reason: str
     suggested_reply: str
+
+    # métricas opcionais para quando usar LLM
+    prompt_tokens: Optional[int] = None
+    completion_tokens: Optional[int] = None
+    total_tokens: Optional[int] = None
+    cost_usd: Optional[float] = None
