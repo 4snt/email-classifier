@@ -1,0 +1,362 @@
+{
+  "financeiro": {
+    "id": "financeiro",
+    "name": "Financeiro",
+    "mood": "formal",
+    "priority_keywords": [
+      "fatura",
+      "boleto",
+      "pagamento",
+      "nota fiscal",
+      "cobrança"
+    ],
+    "weights": [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  },
+  "juridico": {
+    "id": "juridico",
+    "name": "Jurídico",
+    "mood": "profissional",
+    "priority_keywords": [
+      "contrato",
+      "acordo",
+      "proposta",
+      "prazo",
+      "assinatura"
+    ],
+    "weights": [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  },
+  "rh": {
+    "id": "rh",
+    "name": "Recursos Humanos",
+    "mood": "acolhedor",
+    "priority_keywords": [
+      "currículo",
+      "vaga",
+      "entrevista",
+      "contratação",
+      "recrutamento"
+    ],
+    "weights": [0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  },
+  "suporte": {
+    "id": "suporte",
+    "name": "Suporte Técnico",
+    "mood": "atencioso",
+    "priority_keywords": ["erro", "falha", "suporte", "ajuda", "problema"],
+    "weights": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  },
+  "marketing": {
+    "id": "marketing",
+    "name": "Marketing",
+    "mood": "criativo",
+    "priority_keywords": [
+      "promoção",
+      "desconto",
+      "campanha",
+      "newsletter",
+      "parceria"
+    ],
+    "weights": [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  },
+  "comercial": {
+    "id": "comercial",
+    "name": "Comercial/Vendas",
+    "mood": "convincente",
+    "priority_keywords": [
+      "proposta",
+      "cliente",
+      "orçamento",
+      "pedido",
+      "contrato"
+    ],
+    "weights": [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  },
+  "logistica": {
+    "id": "logistica",
+    "name": "Logística",
+    "mood": "objetivo",
+    "priority_keywords": [
+      "entrega",
+      "prazo",
+      "rastreamento",
+      "transporte",
+      "estoque"
+    ],
+    "weights": [0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+  },
+  "fornecedores": {
+    "id": "fornecedores",
+    "name": "Fornecedores",
+    "mood": "colaborativo",
+    "priority_keywords": [
+      "pedido",
+      "compra",
+      "fornecedor",
+      "cotação",
+      "parceria"
+    ],
+    "weights": [0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0]
+  },
+  "gestao_projetos": {
+    "id": "gestao_projetos",
+    "name": "Gestão de Projetos",
+    "mood": "organizado",
+    "priority_keywords": [
+      "projeto",
+      "deadline",
+      "prazo",
+      "status",
+      "relatório"
+    ],
+    "weights": [0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
+  },
+  "ti": {
+    "id": "ti",
+    "name": "TI Interno",
+    "mood": "preciso",
+    "priority_keywords": [
+      "infraestrutura",
+      "servidor",
+      "rede",
+      "configuração",
+      "bug"
+    ],
+    "weights": [0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]
+  },
+  "diretoria": {
+    "id": "diretoria",
+    "name": "Diretoria",
+    "mood": "estratégico",
+    "priority_keywords": [
+      "relatório",
+      "indicador",
+      "meta",
+      "estratégia",
+      "reunião"
+    ],
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0]
+  },
+  "investidores": {
+    "id": "investidores",
+    "name": "Investidores",
+    "mood": "sofisticado",
+    "priority_keywords": [
+      "retorno",
+      "investimento",
+      "ROI",
+      "aplicação",
+      "fundo"
+    ],
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]
+  },
+  "parcerias": {
+    "id": "parcerias",
+    "name": "Parcerias",
+    "mood": "colaborativo",
+    "priority_keywords": [
+      "colaboração",
+      "joint venture",
+      "parceria",
+      "aliança",
+      "cooperação"
+    ],
+    "weights": [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0]
+  },
+  "academico": {
+    "id": "academico",
+    "name": "Acadêmico",
+    "mood": "neutro",
+    "priority_keywords": [
+      "artigo",
+      "pesquisa",
+      "estudo",
+      "universidade",
+      "ciência"
+    ],
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0]
+  },
+  "juridico_trabalhista": {
+    "id": "juridico_trabalhista",
+    "name": "Jurídico Trabalhista",
+    "mood": "objetivo",
+    "priority_keywords": [
+      "processo",
+      "advogado",
+      "audiência",
+      "CLT",
+      "trabalhista"
+    ],
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
+  },
+  "governo": {
+    "id": "governo",
+    "name": "Governo",
+    "mood": "formal",
+    "priority_keywords": [
+      "edital",
+      "licitação",
+      "documentação",
+      "protocolo",
+      "lei"
+    ],
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0]
+  },
+  "comunicacao": {
+    "id": "comunicacao",
+    "name": "Comunicação",
+    "mood": "engajador",
+    "priority_keywords": [
+      "imprensa",
+      "press release",
+      "comunicado",
+      "evento",
+      "mídia"
+    ],
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1]
+  },
+  "eventos": {
+    "id": "eventos",
+    "name": "Eventos",
+    "mood": "animado",
+    "priority_keywords": [
+      "congresso",
+      "feira",
+      "evento",
+      "seminário",
+      "workshop"
+    ],
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1]
+  },
+  "auditoria": {
+    "id": "auditoria",
+    "name": "Auditoria",
+    "mood": "rigoroso",
+    "priority_keywords": [
+      "compliance",
+      "auditoria",
+      "regulação",
+      "controle",
+      "risco"
+    ],
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1]
+  },
+  "clientes_vip": {
+    "id": "clientes_vip",
+    "name": "Clientes VIP",
+    "mood": "personalizado",
+    "priority_keywords": [
+      "vip",
+      "premium",
+      "exclusivo",
+      "atendimento especial",
+      "prioridade"
+    ],
+    "weights": [0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0]
+  },
+  "saude": {
+    "id": "saude",
+    "name": "Saúde",
+    "mood": "humano",
+    "priority_keywords": [
+      "consulta",
+      "exame",
+      "resultado",
+      "receita",
+      "clínica"
+    ],
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0]
+  },
+  "exportacao": {
+    "id": "exportacao",
+    "name": "Exportação",
+    "mood": "formal",
+    "priority_keywords": [
+      "exportação",
+      "alfândega",
+      "documento",
+      "embarque",
+      "porto"
+    ],
+    "weights": [0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0]
+  },
+  "importacao": {
+    "id": "importacao",
+    "name": "Importação",
+    "mood": "detalhista",
+    "priority_keywords": [
+      "importação",
+      "alfândega",
+      "NF",
+      "despacho",
+      "contêiner"
+    ],
+    "weights": [0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0]
+  },
+  "juridico_civil": {
+    "id": "juridico_civil",
+    "name": "Jurídico Civil",
+    "mood": "formal",
+    "priority_keywords": ["ação", "processo", "juiz", "petição", "civil"],
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0]
+  },
+  "educacao": {
+    "id": "educacao",
+    "name": "Educação",
+    "mood": "didático",
+    "priority_keywords": ["aluno", "curso", "matrícula", "aula", "ensino"],
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0]
+  },
+  "ong": {
+    "id": "ong",
+    "name": "ONG/Instituto",
+    "mood": "social",
+    "priority_keywords": [
+      "doação",
+      "voluntário",
+      "projeto social",
+      "apoio",
+      "benefício"
+    ],
+    "weights": [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0]
+  },
+  "midia": {
+    "id": "midia",
+    "name": "Mídia e Jornalismo",
+    "mood": "informativo",
+    "priority_keywords": [
+      "release",
+      "notícia",
+      "reportagem",
+      "matéria",
+      "cobertura"
+    ],
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0]
+  },
+  "startup": {
+    "id": "startup",
+    "name": "Startup",
+    "mood": "inovador",
+    "priority_keywords": ["pitch", "investidor", "parceria", "MVP", "rodada"],
+    "weights": [0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0]
+  },
+  "agronegocio": {
+    "id": "agronegocio",
+    "name": "Agronegócio",
+    "mood": "objetivo",
+    "priority_keywords": ["fazenda", "safra", "agro", "produção", "insumo"],
+    "weights": [0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0]
+  },
+  "energia": {
+    "id": "energia",
+    "name": "Energia",
+    "mood": "técnico",
+    "priority_keywords": [
+      "energia",
+      "elétrica",
+      "painel solar",
+      "conta de luz",
+      "usina"
+    ],
+    "weights": [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0]
+  }
+}

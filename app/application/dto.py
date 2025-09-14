@@ -9,11 +9,9 @@ class DirectJson(BaseModel):
 
 class ClassifyResponse(BaseModel):
     category: Category
-    confidence: float
     reason: str
     suggested_reply: str
-
-    # métricas opcionais para quando usar LLM
+    used_model: Optional[str] = None 
     prompt_tokens: Optional[int] = None
     completion_tokens: Optional[int] = None
     total_tokens: Optional[int] = None
