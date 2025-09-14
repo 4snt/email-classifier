@@ -11,6 +11,43 @@ Entrada pode ser **JSON** (subject/body) ou **arquivo** `.pdf`/`.txt`. Arquitetu
 - **Resposta sugerida** conforme categoria
 - `GET /health` | Swagger em `/docs`
 
+## Estrutura de Arquivos do MVP
+
+- app
+  ├── application
+  │ ├── dto.py
+  │ └── use_cases
+  │ └── classify_email.py
+  ├── bootstrap.py
+  ├── config.py
+  ├── data
+  │ └── profiles.json
+  ├── domain
+  │ ├── entities.py
+  │ ├── errors.py
+  │ └── ports.py
+  ├── infrastructure
+  │ ├── classifiers
+  │ │ ├── openai_llm.py
+  │ │ └── rule_based.py
+  │ ├── extractors
+  │ │ ├── direct_json.py
+  │ │ ├── pdf_extractor.py
+  │ │ └── txt_extractor.py
+  │ ├── nlp
+  │ │ └── tokenizer_simple.py
+  │ ├── profiles
+  │ │ └── profile_json.py
+  │ └── responders
+  │ └── simple_templates.py
+  ├── interfaces
+  │ └── http
+  │ └── routers.py
+  ├── main.py
+  └── ratelimiting.py
+
+  13 directories, 19 files
+
 ## 🚀 Rodar
 
 ```bash

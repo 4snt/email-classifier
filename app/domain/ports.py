@@ -23,3 +23,20 @@ class ReplySuggesterPort(Protocol):
 class ProfilePort(Protocol):
     def get_profile(self, profile_id: str) -> Optional[Dict]:
         ...
+        
+from .entities import ClassificationLog
+
+class LogRepositoryPort(Protocol):
+    """Porta para persistência de logs de classificação."""
+
+    def save(self, log: ClassificationLog) -> ClassificationLog:
+        """Salva um log de classificação no repositório."""
+        ...
+
+    def list_recent(self, limit: int = 50) -> List[ClassificationLog]:
+        """Retorna os últimos logs de classificação."""
+        ...
+
+    def get_by_id(self, log_id: int) -> Optional[ClassificationLog]:
+        """Busca um log específico pelo id."""
+        ...

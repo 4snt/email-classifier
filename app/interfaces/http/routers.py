@@ -1,8 +1,12 @@
-from fastapi import APIRouter, UploadFile, File, Request, HTTPException
+from fastapi import APIRouter, UploadFile, File, Request, HTTPException, Depends
 from app.application.dto import DirectJson, ClassifyResponse
 from app.bootstrap import build_use_case
 from app.domain.errors import BadRequest
 from app.ratelimiting import limiter
+from sqlmodel import Session
+from app.infrastructure.db import get_session
+from app.infrastructure.repositories.sql_log_repository import SqlLogRepository
+from app.domain.entities import ClassificationLog
 
 router = APIRouter()
 uc = build_use_case()
@@ -17,7 +21,7 @@ def health(request: Request):
 @router.post(
     "/classify",
     response_model=ClassifyResponse,
-    summary="Aceita JSON (subject/body + profile_id obrigatório) ou multipart com arquivo .pdf/.txt"
+    summary="Aceita JSON (subject/body + profile_id opcional) ou multipart com arquivo .pdf/.txt"
 )
 @limiter.limit("5/minute")
 async def classify(request: Request, file: UploadFile | None = File(None)):
@@ -50,8 +54,16 @@ async def classify(request: Request, file: UploadFile | None = File(None)):
             )
             return ClassifyResponse(**r.__dict__)
 
-
         raise BadRequest("Use JSON ou multipart/form-data.")
 
     except BadRequest as e:
         raise HTTPException(status_code=400, detail=str(e))
+    
+@router.get(
+    "/logs",
+    response_model=list[ClassificationLog],
+    summary="Lista os últimos logs de classificações"
+)
+def list_logs(limit: int = 50, session: Session = Depends(get_session)):
+    repo = SqlLogRepository(session)
+    return repo.list_recent(limit=limit)
