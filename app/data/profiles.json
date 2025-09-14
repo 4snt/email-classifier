@@ -10,7 +10,38 @@
       "nota fiscal",
       "cobrança"
     ],
-    "weights": [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    "weights": [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    "keyword_synonyms": {
+      "fatura": [
+        "conta",
+        "duplicata",
+        "nota de cobrança",
+        "nota de débito",
+        "invoice"
+      ],
+      "boleto": [
+        "boleto bancário",
+        "linha digitável",
+        "código de barras",
+        "guia de pagamento",
+        "ficha de compensação"
+      ],
+      "pagamento": ["quitação", "liquidação", "acerto", "transferência", "PIX"],
+      "nota fiscal": [
+        "NF",
+        "NF-e",
+        "nota eletrônica",
+        "documento fiscal",
+        "DANFE"
+      ],
+      "cobrança": [
+        "aviso de cobrança",
+        "contas a receber",
+        "notificação de débito",
+        "lançamento",
+        "carnê"
+      ]
+    }
   },
   "juridico": {
     "id": "juridico",
@@ -23,7 +54,44 @@
       "prazo",
       "assinatura"
     ],
-    "weights": [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    "weights": [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    "keyword_synonyms": {
+      "contrato": [
+        "acordo contratual",
+        "pacto",
+        "instrumento",
+        "ajuste",
+        "escritura"
+      ],
+      "acordo": [
+        "entendimento",
+        "convenção",
+        "composição",
+        "transação",
+        "pacto"
+      ],
+      "proposta": [
+        "oferta",
+        "minuta",
+        "proposição",
+        "carta-proposta",
+        "orçamento"
+      ],
+      "prazo": [
+        "deadline",
+        "data-limite",
+        "termo final",
+        "tempo hábil",
+        "limite temporal"
+      ],
+      "assinatura": [
+        "subscrição",
+        "rubrica",
+        "firma",
+        "assinatura digital",
+        "assinatura eletrônica"
+      ]
+    }
   },
   "rh": {
     "id": "rh",
@@ -36,14 +104,64 @@
       "contratação",
       "recrutamento"
     ],
-    "weights": [0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    "weights": [0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    "keyword_synonyms": {
+      "currículo": [
+        "CV",
+        "curriculum vitae",
+        "resumé",
+        "perfil profissional",
+        "histórico profissional"
+      ],
+      "vaga": ["posição", "oportunidade", "posto", "abertura", "job"],
+      "entrevista": [
+        "entrevista de emprego",
+        "bate-papo",
+        "screening",
+        "processo seletivo",
+        "triagem"
+      ],
+      "contratação": [
+        "admissão",
+        "hiring",
+        "onboarding",
+        "ingresso",
+        "emprego"
+      ],
+      "recrutamento": [
+        "talent acquisition",
+        "seleção",
+        "headhunting",
+        "sourcing",
+        "captação de talentos"
+      ]
+    }
   },
   "suporte": {
     "id": "suporte",
     "name": "Suporte Técnico",
     "mood": "atencioso",
     "priority_keywords": ["erro", "falha", "suporte", "ajuda", "problema"],
-    "weights": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    "weights": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    "keyword_synonyms": {
+      "erro": ["bug", "defeito", "exceção", "mensagem de erro", "anomalia"],
+      "falha": [
+        "pane",
+        "quebra",
+        "malfuncionamento",
+        "interrupção",
+        "inconsistência"
+      ],
+      "suporte": [
+        "atendimento",
+        "help desk",
+        "suporte técnico",
+        "service desk",
+        "assistência"
+      ],
+      "ajuda": ["auxílio", "apoio", "orientação", "socorro", "suporte"],
+      "problema": ["issue", "incidente", "anomalia", "imprevisto", "ticket"]
+    }
   },
   "marketing": {
     "id": "marketing",
@@ -56,7 +174,38 @@
       "newsletter",
       "parceria"
     ],
-    "weights": [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    "weights": [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    "keyword_synonyms": {
+      "promoção": [
+        "campanha promocional",
+        "oferta",
+        "ação de vendas",
+        "liquidação",
+        "promo"
+      ],
+      "desconto": ["abatimento", "redução", "cupom", "percentual off", "bônus"],
+      "campanha": [
+        "campanha publicitária",
+        "ação de marketing",
+        "ativação",
+        "flight",
+        "push"
+      ],
+      "newsletter": [
+        "boletim",
+        "informativo",
+        "mailing",
+        "newsletter por e-mail",
+        "boletim eletrônico"
+      ],
+      "parceria": [
+        "colaboração",
+        "co-branding",
+        "aliança",
+        "cooperação",
+        "joint marketing"
+      ]
+    }
   },
   "comercial": {
     "id": "comercial",
@@ -69,7 +218,44 @@
       "pedido",
       "contrato"
     ],
-    "weights": [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    "weights": [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    "keyword_synonyms": {
+      "proposta": [
+        "oferta comercial",
+        "cotação",
+        "estimativa",
+        "apresentação de proposta",
+        "quotation"
+      ],
+      "cliente": [
+        "consumidor",
+        "comprador",
+        "conta",
+        "lead convertido",
+        "parceiro comercial"
+      ],
+      "orçamento": [
+        "cotação",
+        "estimativa de custos",
+        "proposta de preço",
+        "budget",
+        "quotation"
+      ],
+      "pedido": [
+        "ordem de compra",
+        "solicitação",
+        "requisição",
+        "order",
+        "compra"
+      ],
+      "contrato": [
+        "acordo comercial",
+        "termo contratual",
+        "instrumento particular",
+        "minuta contratual",
+        "pacto"
+      ]
+    }
   },
   "logistica": {
     "id": "logistica",
@@ -82,7 +268,38 @@
       "transporte",
       "estoque"
     ],
-    "weights": [0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+    "weights": [0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+    "keyword_synonyms": {
+      "entrega": ["envio", "expedição", "distribuição", "remessa", "drop-off"],
+      "prazo": [
+        "SLA de entrega",
+        "data prevista",
+        "lead time",
+        "janela de entrega",
+        "deadline"
+      ],
+      "rastreamento": [
+        "tracking",
+        "acompanhamento",
+        "localização",
+        "código de rastreio",
+        "status logístico"
+      ],
+      "transporte": [
+        "frete",
+        "remessa",
+        "carregamento",
+        "logística de transporte",
+        "modal"
+      ],
+      "estoque": [
+        "inventário",
+        "armazém",
+        "almoxarifado",
+        "nível de estoque",
+        "stock"
+      ]
+    }
   },
   "fornecedores": {
     "id": "fornecedores",
@@ -95,7 +312,44 @@
       "cotação",
       "parceria"
     ],
-    "weights": [0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0]
+    "weights": [0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+    "keyword_synonyms": {
+      "pedido": [
+        "ordem de compra",
+        "PO",
+        "requisição de compra",
+        "solicitação de fornecimento",
+        "order"
+      ],
+      "compra": [
+        "aquisição",
+        "procurement",
+        "suprimento",
+        "abastecimento",
+        "sourcing"
+      ],
+      "fornecedor": [
+        "parceiro",
+        "supridor",
+        "vendor",
+        "provedor",
+        "abastecedor"
+      ],
+      "cotação": [
+        "quote",
+        "estimativa de preço",
+        "proposta comercial",
+        "orçamento",
+        "RFQ"
+      ],
+      "parceria": [
+        "aliança",
+        "colaboração",
+        "acordo",
+        "cooperação",
+        "joint venture"
+      ]
+    }
   },
   "gestao_projetos": {
     "id": "gestao_projetos",
@@ -108,7 +362,32 @@
       "status",
       "relatório"
     ],
-    "weights": [0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
+    "weights": [0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+    "keyword_synonyms": {
+      "projeto": [
+        "iniciativa",
+        "programa",
+        "empreendimento",
+        "plano",
+        "workstream"
+      ],
+      "deadline": [
+        "data-limite",
+        "prazo final",
+        "marco final",
+        "data de entrega",
+        "cutoff"
+      ],
+      "prazo": ["cronograma", "timeline", "janela", "SLA", "lead time"],
+      "status": ["andamento", "situação", "progresso", "atualização", "health"],
+      "relatório": [
+        "report",
+        "sumário",
+        "relato",
+        "documento de status",
+        "follow-up"
+      ]
+    }
   },
   "ti": {
     "id": "ti",
@@ -121,7 +400,26 @@
       "configuração",
       "bug"
     ],
-    "weights": [0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]
+    "weights": [0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+    "keyword_synonyms": {
+      "infraestrutura": [
+        "infra",
+        "parque tecnológico",
+        "stack",
+        "ambiente",
+        "plataforma"
+      ],
+      "servidor": ["host", "máquina", "nó", "instância", "servidor dedicado"],
+      "rede": ["network", "LAN", "WAN", "conectividade", "sub-rede"],
+      "configuração": [
+        "setup",
+        "ajuste",
+        "parametrização",
+        "provisionamento",
+        "tuning"
+      ],
+      "bug": ["defeito", "erro", "falha", "issue", "anomalia"]
+    }
   },
   "diretoria": {
     "id": "diretoria",
@@ -134,7 +432,44 @@
       "estratégia",
       "reunião"
     ],
-    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0]
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
+    "keyword_synonyms": {
+      "relatório": [
+        "report",
+        "sumário executivo",
+        "painel",
+        "dossiê",
+        "apresentação"
+      ],
+      "indicador": [
+        "KPI",
+        "métrica",
+        "índice",
+        "sinalizador",
+        "indicador-chave"
+      ],
+      "meta": [
+        "objetivo",
+        "target",
+        "meta estratégica",
+        "resultado esperado",
+        "OKR"
+      ],
+      "estratégia": [
+        "plano estratégico",
+        "diretriz",
+        "roadmap",
+        "posicionamento",
+        "tática"
+      ],
+      "reunião": [
+        "encontro",
+        "comitê",
+        "board meeting",
+        "sessão",
+        "alinhamento"
+      ]
+    }
   },
   "investidores": {
     "id": "investidores",
@@ -147,7 +482,44 @@
       "aplicação",
       "fundo"
     ],
-    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
+    "keyword_synonyms": {
+      "retorno": [
+        "rentabilidade",
+        "ganho",
+        "yield",
+        "resultado",
+        "retorno financeiro"
+      ],
+      "investimento": [
+        "aporte",
+        "alocação de capital",
+        "aplicação",
+        "capex",
+        "equity"
+      ],
+      "ROI": [
+        "retorno sobre investimento",
+        "taxa de retorno",
+        "rentabilidade do investimento",
+        "payback",
+        "lucro sobre investimento"
+      ],
+      "aplicação": [
+        "aplicação financeira",
+        "alocação",
+        "fundo aplicado",
+        "produto financeiro",
+        "investimento"
+      ],
+      "fundo": [
+        "fundo de investimento",
+        "fundo mútuo",
+        "veículo de investimento",
+        "carteira",
+        "gestão"
+      ]
+    }
   },
   "parcerias": {
     "id": "parcerias",
@@ -160,7 +532,44 @@
       "aliança",
       "cooperação"
     ],
-    "weights": [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0]
+    "weights": [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0],
+    "keyword_synonyms": {
+      "colaboração": [
+        "co-criação",
+        "trabalho conjunto",
+        "parceria",
+        "cooperação",
+        "aliança"
+      ],
+      "joint venture": [
+        "empresa conjunta",
+        "JV",
+        "parceria societária",
+        "aliança estratégica",
+        "empreendimento conjunto"
+      ],
+      "parceria": [
+        "aliança",
+        "cooperação",
+        "colaboração",
+        "acordo",
+        "co-parceria"
+      ],
+      "aliança": [
+        "aliança estratégica",
+        "partnership",
+        "coalizão",
+        "consórcio",
+        "frente"
+      ],
+      "cooperação": [
+        "colaboração",
+        "mutualismo",
+        "trabalho em conjunto",
+        "sinergia",
+        "assistência mútua"
+      ]
+    }
   },
   "academico": {
     "id": "academico",
@@ -173,7 +582,38 @@
       "universidade",
       "ciência"
     ],
-    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0]
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0],
+    "keyword_synonyms": {
+      "artigo": [
+        "paper",
+        "artigo científico",
+        "manuscrito",
+        "publicação",
+        "artigo acadêmico"
+      ],
+      "pesquisa": [
+        "investigação",
+        "estudo",
+        "survey",
+        "pesquisa acadêmica",
+        "trabalho científico"
+      ],
+      "estudo": ["análise", "ensaio", "exame", "case study", "pesquisa"],
+      "universidade": [
+        "instituição de ensino superior",
+        "IES",
+        "campus",
+        "faculdade",
+        "academia"
+      ],
+      "ciência": [
+        "científico",
+        "campo científico",
+        "conhecimento científico",
+        "área de pesquisa",
+        "disciplinas científicas"
+      ]
+    }
   },
   "juridico_trabalhista": {
     "id": "juridico_trabalhista",
@@ -186,7 +626,38 @@
       "CLT",
       "trabalhista"
     ],
-    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+    "keyword_synonyms": {
+      "processo": [
+        "ação trabalhista",
+        "demanda",
+        "procedimento",
+        "reclamação trabalhista",
+        "litígio"
+      ],
+      "advogado": ["jurista", "defensor", "causídico", "procurador", "patrono"],
+      "audiência": [
+        "sessão",
+        "oitiva",
+        "julgamento",
+        "audiência de conciliação",
+        "instrução"
+      ],
+      "CLT": [
+        "consolidação das leis do trabalho",
+        "legislação trabalhista",
+        "direito do trabalho",
+        "normas trabalhistas",
+        "regime CLT"
+      ],
+      "trabalhista": [
+        "laboral",
+        "direito trabalhista",
+        "esfera trabalhista",
+        "matéria laboral",
+        "relações de trabalho"
+      ]
+    }
   },
   "governo": {
     "id": "governo",
@@ -199,7 +670,38 @@
       "protocolo",
       "lei"
     ],
-    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0]
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0],
+    "keyword_synonyms": {
+      "edital": [
+        "chamamento",
+        "licitação",
+        "convocação",
+        "instrumento convocatório",
+        "publicação oficial"
+      ],
+      "licitação": [
+        "pregão",
+        "concorrência",
+        "tomada de preços",
+        "contratação pública",
+        "procedimento licitatório"
+      ],
+      "documentação": [
+        "documentos",
+        "papelada",
+        "exigências",
+        "comprovação",
+        "certidões"
+      ],
+      "protocolo": [
+        "tramitação",
+        "número de protocolo",
+        "registro",
+        "autuação",
+        "processamento"
+      ],
+      "lei": ["norma", "legislação", "decreto", "portaria", "ato normativo"]
+    }
   },
   "comunicacao": {
     "id": "comunicacao",
@@ -212,7 +714,38 @@
       "evento",
       "mídia"
     ],
-    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1]
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+    "keyword_synonyms": {
+      "imprensa": [
+        "mídia",
+        "jornalismo",
+        "press",
+        "veículos",
+        "imprensa local"
+      ],
+      "press release": [
+        "comunicado à imprensa",
+        "nota à imprensa",
+        "release",
+        "comunicado oficial",
+        "press note"
+      ],
+      "comunicado": ["nota", "aviso", "informativo", "circular", "memorando"],
+      "evento": [
+        "cerimônia",
+        "lançamento",
+        "coletiva",
+        "conferência",
+        "ativação"
+      ],
+      "mídia": [
+        "veículos",
+        "canal",
+        "plataforma",
+        "portal",
+        "meios de comunicação"
+      ]
+    }
   },
   "eventos": {
     "id": "eventos",
@@ -225,7 +758,26 @@
       "seminário",
       "workshop"
     ],
-    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1]
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+    "keyword_synonyms": {
+      "congresso": [
+        "conferência",
+        "simpósio",
+        "summit",
+        "encontro científico",
+        "colóquio"
+      ],
+      "feira": ["expo", "exposição", "mostra", "trade show", "salão"],
+      "evento": ["encontro", "live", "sessão", "atividade", "meetup"],
+      "seminário": ["workshop", "palestra", "colóquio", "webinar", "curso"],
+      "workshop": [
+        "oficina",
+        "treinamento prático",
+        "hands-on",
+        "laboratório",
+        "clínica"
+      ]
+    }
   },
   "auditoria": {
     "id": "auditoria",
@@ -238,7 +790,44 @@
       "controle",
       "risco"
     ],
-    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1]
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1],
+    "keyword_synonyms": {
+      "compliance": [
+        "conformidade",
+        "aderência",
+        "governança",
+        "normatização",
+        "políticas"
+      ],
+      "auditoria": [
+        "inspeção",
+        "verificação",
+        "revisão",
+        "exame",
+        "auditoria interna"
+      ],
+      "regulação": [
+        "regulamentação",
+        "regras",
+        "normas",
+        "autorregulação",
+        "diretrizes"
+      ],
+      "controle": [
+        "monitoramento",
+        "fiscalização",
+        "controle interno",
+        "checagem",
+        "controle de qualidade"
+      ],
+      "risco": [
+        "exposição",
+        "ameaça",
+        "probabilidade de perda",
+        "vulnerabilidade",
+        "incerteza"
+      ]
+    }
   },
   "clientes_vip": {
     "id": "clientes_vip",
@@ -251,7 +840,32 @@
       "atendimento especial",
       "prioridade"
     ],
-    "weights": [0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0]
+    "weights": [0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0],
+    "keyword_synonyms": {
+      "vip": [
+        "premium",
+        "prioritário",
+        "exclusivo",
+        "alto valor",
+        "categoria especial"
+      ],
+      "premium": ["plus", "prime", "alto padrão", "top-tier", "classe premium"],
+      "exclusivo": ["restrito", "seleto", "privado", "único", "de luxo"],
+      "atendimento especial": [
+        "tratamento diferenciado",
+        "prioridade de atendimento",
+        "suporte dedicado",
+        "concierge",
+        "serviço personalizado"
+      ],
+      "prioridade": [
+        "preferência",
+        "urgência",
+        "fila rápida",
+        "alta prioridade",
+        "priorização"
+      ]
+    }
   },
   "saude": {
     "id": "saude",
@@ -264,7 +878,44 @@
       "receita",
       "clínica"
     ],
-    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0]
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
+    "keyword_synonyms": {
+      "consulta": [
+        "atendimento",
+        "agendamento",
+        "avaliação clínica",
+        "check-up",
+        "sessão médica"
+      ],
+      "exame": [
+        "teste",
+        "avaliação",
+        "diagnóstico",
+        "procedimento",
+        "análise laboratorial"
+      ],
+      "resultado": [
+        "laudo",
+        "parecer",
+        "relatório médico",
+        "resultado de exame",
+        "conclusão"
+      ],
+      "receita": [
+        "prescrição",
+        "receituário",
+        "ordem médica",
+        "medicação prescrita",
+        "orientação médica"
+      ],
+      "clínica": [
+        "estabelecimento de saúde",
+        "consultório",
+        "hospital",
+        "posto de saúde",
+        "unidade de atendimento"
+      ]
+    }
   },
   "exportacao": {
     "id": "exportacao",
@@ -277,7 +928,44 @@
       "embarque",
       "porto"
     ],
-    "weights": [0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0]
+    "weights": [0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0],
+    "keyword_synonyms": {
+      "exportação": [
+        "expedição internacional",
+        "envio ao exterior",
+        "comércio exterior",
+        "venda externa",
+        "remessa internacional"
+      ],
+      "alfândega": [
+        "aduana",
+        "desembaraço aduaneiro",
+        "controle aduaneiro",
+        "fiscalização aduaneira",
+        "customs"
+      ],
+      "documento": [
+        "documentação",
+        "papelada",
+        "arquivo",
+        "formulário",
+        "comprovante"
+      ],
+      "embarque": [
+        "carregamento",
+        "envio",
+        "shipping",
+        "despacho",
+        "expedição"
+      ],
+      "porto": [
+        "terminal portuário",
+        "doca",
+        "cais",
+        "porto marítimo",
+        "porto seco"
+      ]
+    }
   },
   "importacao": {
     "id": "importacao",
@@ -290,21 +978,108 @@
       "despacho",
       "contêiner"
     ],
-    "weights": [0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0]
+    "weights": [0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0],
+    "keyword_synonyms": {
+      "importação": [
+        "compra externa",
+        "internalização",
+        "entrada de mercadoria",
+        "aquisição internacional",
+        "comércio exterior (importação)"
+      ],
+      "alfândega": [
+        "aduana",
+        "desembaraço aduaneiro",
+        "controle aduaneiro",
+        "fiscalização aduaneira",
+        "customs"
+      ],
+      "NF": [
+        "nota fiscal",
+        "NF-e",
+        "documento fiscal",
+        "DANFE",
+        "nota eletrônica"
+      ],
+      "despacho": [
+        "desembaraço",
+        "tramitação",
+        "liberação",
+        "processamento aduaneiro",
+        "expedição"
+      ],
+      "contêiner": [
+        "container",
+        "unidade de carga",
+        "caixa metálica",
+        "box de transporte",
+        "UTI intermodal"
+      ]
+    }
   },
   "juridico_civil": {
     "id": "juridico_civil",
     "name": "Jurídico Civil",
     "mood": "formal",
     "priority_keywords": ["ação", "processo", "juiz", "petição", "civil"],
-    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0]
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0],
+    "keyword_synonyms": {
+      "ação": [
+        "processo judicial",
+        "demanda",
+        "ação cível",
+        "procedimento",
+        "petição inicial"
+      ],
+      "processo": ["feito", "autos", "procedimento", "demanda", "trâmite"],
+      "juiz": [
+        "magistrado",
+        "juízo",
+        "vara",
+        "autoridade judiciária",
+        "togada"
+      ],
+      "petição": [
+        "requerimento",
+        "inicial",
+        "peça processual",
+        "exordial",
+        "manifestação"
+      ],
+      "civil": [
+        "cível",
+        "direito civil",
+        "esfera cível",
+        "foro cível",
+        "ramo civil"
+      ]
+    }
   },
   "educacao": {
     "id": "educacao",
     "name": "Educação",
     "mood": "didático",
     "priority_keywords": ["aluno", "curso", "matrícula", "aula", "ensino"],
-    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0]
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0],
+    "keyword_synonyms": {
+      "aluno": ["estudante", "discente", "educando", "matriculado", "aprendiz"],
+      "curso": ["disciplina", "formação", "turma", "programa", "capacitação"],
+      "matrícula": [
+        "inscrição",
+        "registro acadêmico",
+        "ingresso",
+        "rematrícula",
+        "vínculo"
+      ],
+      "aula": ["lição", "classe", "sessão", "encontro", "atividade didática"],
+      "ensino": [
+        "educação",
+        "docência",
+        "instrução",
+        "pedagogia",
+        "aprendizagem"
+      ]
+    }
   },
   "ong": {
     "id": "ong",
@@ -317,7 +1092,38 @@
       "apoio",
       "benefício"
     ],
-    "weights": [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0]
+    "weights": [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+    "keyword_synonyms": {
+      "doação": [
+        "contribuição",
+        "aporte",
+        "caridade",
+        "benfeitoria",
+        "repasse"
+      ],
+      "voluntário": [
+        "colaborador voluntário",
+        "trabalho voluntário",
+        "voluntariado",
+        "prestador solidário",
+        "agente social"
+      ],
+      "projeto social": [
+        "iniciativa social",
+        "ação social",
+        "programa social",
+        "intervenção social",
+        "projeto comunitário"
+      ],
+      "apoio": ["suporte", "assistência", "amparo", "parceria", "patrocínio"],
+      "benefício": [
+        "auxílio",
+        "vantagem",
+        "subvenção",
+        "benefício social",
+        "amparo"
+      ]
+    }
   },
   "midia": {
     "id": "midia",
@@ -330,21 +1136,120 @@
       "matéria",
       "cobertura"
     ],
-    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0]
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0],
+    "keyword_synonyms": {
+      "release": [
+        "press release",
+        "comunicado à imprensa",
+        "nota oficial",
+        "comunicado",
+        "press note"
+      ],
+      "notícia": ["matéria", "reportagem", "nota", "boletim", "informativo"],
+      "reportagem": [
+        "matéria especial",
+        "peça jornalística",
+        "cobertura",
+        "apuração",
+        "feature"
+      ],
+      "matéria": ["conteúdo", "peça", "artigo", "reportagem", "pauta"],
+      "cobertura": [
+        "acompanhamento",
+        "cobertura ao vivo",
+        "live coverage",
+        "follow",
+        "plantão"
+      ]
+    }
   },
   "startup": {
     "id": "startup",
     "name": "Startup",
     "mood": "inovador",
     "priority_keywords": ["pitch", "investidor", "parceria", "MVP", "rodada"],
-    "weights": [0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0]
+    "weights": [0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0],
+    "keyword_synonyms": {
+      "pitch": [
+        "apresentação",
+        "apresentação de investimento",
+        "deck",
+        "elevator pitch",
+        "demo"
+      ],
+      "investidor": [
+        "VC",
+        "anjo",
+        "financiador",
+        "apoiador financeiro",
+        "capitalista de risco"
+      ],
+      "parceria": [
+        "aliança",
+        "cooperação",
+        "colaboração",
+        "acordo",
+        "joint venture"
+      ],
+      "MVP": [
+        "produto mínimo viável",
+        "protótipo funcional",
+        "versão inicial",
+        "prova de conceito",
+        "beta"
+      ],
+      "rodada": [
+        "rodada de investimento",
+        "captação",
+        "fundraising",
+        "série A/B",
+        "aportes"
+      ]
+    }
   },
   "agronegocio": {
     "id": "agronegocio",
     "name": "Agronegócio",
     "mood": "objetivo",
     "priority_keywords": ["fazenda", "safra", "agro", "produção", "insumo"],
-    "weights": [0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0]
+    "weights": [0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0],
+    "keyword_synonyms": {
+      "fazenda": [
+        "propriedade rural",
+        "sítio",
+        "estância",
+        "chácara",
+        "agropecuária"
+      ],
+      "safra": [
+        "colheita",
+        "temporada",
+        "produção anual",
+        "período agrícola",
+        "colheita sazonal"
+      ],
+      "agro": [
+        "agronegócio",
+        "setor agrícola",
+        "cadeia do agro",
+        "rural",
+        "agropecuário"
+      ],
+      "produção": [
+        "rendimento",
+        "produção agrícola",
+        "volume produzido",
+        "output",
+        "produção rural"
+      ],
+      "insumo": [
+        "fertilizante",
+        "defensivo",
+        "sementes",
+        "suprimentos",
+        "matéria-prima agrícola"
+      ]
+    }
   },
   "energia": {
     "id": "energia",
@@ -357,6 +1262,43 @@
       "conta de luz",
       "usina"
     ],
-    "weights": [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0]
+    "weights": [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0],
+    "keyword_synonyms": {
+      "energia": [
+        "eletricidade",
+        "fornecimento energético",
+        "matriz energética",
+        "energia elétrica",
+        "suprimento de energia"
+      ],
+      "elétrica": [
+        "energia elétrica",
+        "eletricidade",
+        "rede elétrica",
+        "sistema elétrico",
+        "força"
+      ],
+      "painel solar": [
+        "módulo fotovoltaico",
+        "placa solar",
+        "painéis fotovoltaicos",
+        "FV",
+        "gerador solar"
+      ],
+      "conta de luz": [
+        "fatura de energia",
+        "tarifa elétrica",
+        "conta de energia",
+        "fatura elétrica",
+        "boletim de consumo"
+      ],
+      "usina": [
+        "planta",
+        "central elétrica",
+        "geradora",
+        "usina de geração",
+        "complexo energético"
+      ]
+    }
   }
 }
