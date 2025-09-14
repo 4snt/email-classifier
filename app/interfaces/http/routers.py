@@ -21,7 +21,7 @@ def health(request: Request):
 @router.post(
     "/classify",
     response_model=ClassifyResponse,
-    summary="Aceita JSON (subject/body + profile_id opcional) ou multipart com arquivo .pdf/.txt"
+    summary="Aceita JSON (subject/body + profile_id opcional) ou multipart com arquivo .pdf/.txt/.eml"
 )
 @limiter.limit("5/minute")
 async def classify(request: Request, file: UploadFile | None = File(None)):

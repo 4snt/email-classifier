@@ -1,20 +1,28 @@
 import re
-from typing import List
-from app.domain.ports import TokenizerPort
+from langdetect import detect, DetectorFactory
+DetectorFactory.seed = 0  # reproducibilidade
 
-_WORD_RE = re.compile(r"[A-Za-zÀ-ÖØ-öø-ÿ0-9_]+")
+STOP_PT = {"de","da","do","a","o","e","que","em","para","com","um","uma","por","no","na","os","as"}
+STOP_EN = {"the","a","an","and","of","to","in","for","on","with","is","are","be","this","that"}
+STOP_ES = {"de","la","el","y","que","en","para","con","un","una","por","los","las","es","son"}
 
-STOPWORDS = {
-    "pt": {"a","o","as","os","de","do","da","para","por","e","ou","que","com","um","uma","em","no","na","nos","nas"},
-    "en": {"a","the","to","for","and","or","of","in","on","is","are","be","with"}
-}
-
-class SimpleTokenizer(TokenizerPort):
-    def __init__(self, lang: str = "pt"):
-        self.stop = STOPWORDS.get(lang, set())
+class SimpleTokenizer:
+    def __init__(self, lang: str = "pt", supported_langs=("pt","en","es")):
+        self.lang = lang
+        self.supported_langs = supported_langs
 
     def preprocess(self, text: str) -> str:
-        return text.lower().strip()
+        return (text or "").strip().lower()
 
-    def tokenize(self, text: str) -> List[str]:
-        return [t for t in _WORD_RE.findall(text) if t not in self.stop]
+    def tokenize(self, text: str):
+        lang = self.lang
+        if self.lang == "auto":
+            try:
+                guess = detect(text or "")
+                lang = guess if guess in self.supported_langs else "pt"
+            except Exception:
+                lang = "pt"
+
+        tokens = re.findall(r"\b\w+\b", text or "", flags=re.UNICODE)
+        stop = STOP_PT if lang == "pt" else STOP_EN if lang == "en" else STOP_ES
+        return [t for t in tokens if t not in stop]
