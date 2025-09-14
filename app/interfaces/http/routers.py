@@ -25,12 +25,8 @@ async def classify(request: Request, file: UploadFile | None = File(None)):
     try:
         if "application/json" in ctype:
             data = await request.json()
-
-            if "profile_id" not in data:
-                raise BadRequest("Campo 'profile_id' é obrigatório.")
-
             payload = DirectJson(**data)
-            profile_id = data["profile_id"]
+            profile_id = payload.profile_id
 
             r = uc.execute_from_text(
                 payload.subject,
@@ -45,16 +41,15 @@ async def classify(request: Request, file: UploadFile | None = File(None)):
                 raise BadRequest("Envie 'file' (.pdf/.txt).")
 
             raw = await file.read()
-            profile_id = request.query_params.get("profile_id")
-            if not profile_id:
-                raise BadRequest("Parametro 'profile_id' é obrigatório na query string.")
+            profile_id = request.query_params.get("profile_id")  # pode ser None
 
             r = uc.execute_from_file(
                 file.filename,
                 raw,
-                profile_id=profile_id, 
+                profile_id=profile_id,
             )
             return ClassifyResponse(**r.__dict__)
+
 
         raise BadRequest("Use JSON ou multipart/form-data.")
 

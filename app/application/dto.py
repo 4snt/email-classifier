@@ -6,6 +6,7 @@ class DirectJson(BaseModel):
     subject: Optional[str] = None
     body: str = Field(min_length=1)
     sender: Optional[str] = None
+    profile_id:  Optional[str] = None
 
 class ClassifyResponse(BaseModel):
     category: Category

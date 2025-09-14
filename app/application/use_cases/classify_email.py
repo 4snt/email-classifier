@@ -20,12 +20,14 @@ class FileFacade:
 
 
 class ClassifyEmailUseCase:
-    def __init__(self,
-                 file_facade: FileFacade,
-                 tokenizer: TokenizerPort,
-                 classifier: ClassifierPort,
-                 responder: ReplySuggesterPort,
-                 profiles: ProfilePort):   
+    def __init__(
+        self,
+        file_facade: FileFacade,
+        tokenizer: TokenizerPort,
+        classifier: ClassifierPort,
+        responder: ReplySuggesterPort,
+        profiles: ProfilePort
+    ):
         self.file_facade = file_facade
         self.tokenizer = tokenizer
         self.classifier = classifier
@@ -34,11 +36,14 @@ class ClassifyEmailUseCase:
 
     def execute_from_text(
         self,
-        subject: Optional[str],
+        subject: str,
         body: str,
-        sender: Optional[str],
-        profile_id: str
+        sender: Optional[str] = None,
+        profile_id: Optional[str] = None
     ) -> ClassificationResult:
+        if not profile_id:
+            profile_id = "default"
+
         profile = self.profiles.get_profile(profile_id)
         if not profile:
             raise BadRequest(f"Perfil '{profile_id}' não encontrado")
@@ -61,7 +66,7 @@ class ClassifyEmailUseCase:
         self,
         filename: str,
         raw: bytes,
-        profile_id: str,
+        profile_id: Optional[str] = None,
         subject: Optional[str] = None,
         sender: Optional[str] = None
     ) -> ClassificationResult:

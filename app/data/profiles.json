@@ -1,4 +1,42 @@
 {
+  "default": {
+    "id": "default",
+    "name": "Padrão",
+    "mood": "neutro",
+    "priority_keywords": [
+      "informação",
+      "mensagem",
+      "texto",
+      "documento",
+      "comunicação"
+    ],
+    "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    "keyword_synonyms": {
+      "informação": ["dados", "detalhes", "conteúdo", "registro", "fato"],
+      "mensagem": ["recado", "aviso", "notificação", "comunicado", "email"],
+      "texto": [
+        "conteúdo textual",
+        "parágrafo",
+        "descrição",
+        "escrito",
+        "trecho"
+      ],
+      "documento": [
+        "arquivo",
+        "registro",
+        "material",
+        "formulário",
+        "papelada"
+      ],
+      "comunicação": [
+        "contato",
+        "diálogo",
+        "interação",
+        "troca de mensagens",
+        "aviso"
+      ]
+    }
+  },
   "financeiro": {
     "id": "financeiro",
     "name": "Financeiro",
