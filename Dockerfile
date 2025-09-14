@@ -14,4 +14,4 @@ ENV FORWARDED_ALLOW_IPS="*"
 
 EXPOSE 8044
 
-CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT} --proxy-headers"]
+CMD ["sh", "-c", "python -m scripts.seed_if_empty && uvicorn app.main:app --host 0.0.0.0 --port ${PORT} --proxy-headers"]
