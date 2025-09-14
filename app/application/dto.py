@@ -17,3 +17,11 @@ class ClassifyResponse(BaseModel):
     completion_tokens: Optional[int] = None
     total_tokens: Optional[int] = None
     cost_usd: Optional[float] = None
+    
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
+class LoginResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"

@@ -55,3 +55,9 @@ class ClassificationLog:
 
     # Extra flexível
     extra: Optional[Dict[str, Any]] = None
+    
+@dataclass(frozen=True)
+class User:
+    id: Optional[int]
+    username: str
+    password_hash: str

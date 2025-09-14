@@ -62,3 +62,22 @@ class ClassificationLogModel(SQLModel, table=True):
     @classmethod
     def from_entity(cls, log_entity):
         return cls(**log_entity.__dict__)
+
+class UserModel(SQLModel, table=True):
+    __tablename__ = "users"
+
+    id: Optional[int] = Field(default=None, primary_key=True)
+    username: str = Field(index=True, unique=True, nullable=False)
+    password_hash: str = Field(nullable=False)
+
+    def to_entity(self):
+        from app.domain.entities import User
+        return User(
+            id=self.id,
+            username=self.username,
+            password_hash=self.password_hash
+        )
+
+    @classmethod
+    def from_entity(cls, user_entity):
+        return cls(**user_entity.__dict__)

@@ -40,3 +40,11 @@ class LogRepositoryPort(Protocol):
     def get_by_id(self, log_id: int) -> Optional[ClassificationLog]:
         """Busca um log específico pelo id."""
         ...
+class EmailSourcePort(Protocol):
+    def fetch_unread(self) -> list[Email]:
+        """Busca emails não lidos da fonte (IMAP, Gmail API etc)."""
+        ...
+
+    def mark_as_read(self, ids: list[str]) -> None:
+        """Marca como lidos (ou move para pasta) depois de processar."""
+        ...

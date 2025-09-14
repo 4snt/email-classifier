@@ -4,10 +4,14 @@ from pathlib import Path
 from typing import Optional
 from pydantic import BaseModel
 from dotenv import load_dotenv
+from datetime import timedelta
 
 ROOT = Path(__file__).resolve().parent.parent
 ENV_FILE = ROOT / ".env"
 load_dotenv(ENV_FILE, override=False) 
+SECRET_KEY = os.getenv("JWT_SECRET", "dev-secret")
+ALGORITHM = "HS256"
+#ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
 class Settings(BaseModel):
     USE_OPENAI: bool = os.getenv("USE_OPENAI", "false").strip().lower() == "true"
