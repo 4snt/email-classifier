@@ -1,67 +1,76 @@
-# Email Classifier — MVP (FastAPI + DDD-lite)
+# 📧 Email Classifier — Backend (FastAPI + DDD-lite)
 
-MVP enxuto que recebe **texto direto** ou **arquivos (.pdf / .txt)**, normaliza para JSON, roda **NLP básico** (pré-process + tokenização), classifica o e-mail como **Produtivo** ou **Improdutivo** e gera uma **resposta sugerida**.  
-Arquitetura **hexagonal** (ports & adapters), com **use case** único e adapters substituíveis (rule-based por padrão e LLM opcional).
+MVP enxuto para **classificação automática de e-mails**.  
+Recebe **texto direto**, **arquivos (.pdf / .txt)** ou lê diretamente de uma **caixa de entrada IMAP**,  
+classifica o e-mail como **Produtivo** ou **Improdutivo** e gera uma **resposta sugerida**.
+
+Arquitetura **hexagonal** (ports & adapters), com **use cases** independentes e adapters substituíveis.  
+Por padrão usa classificador **rule-based**, mas é possível plugar **LLMs** (ex: OpenAI).
 
 ---
 
 ## ✨ Features
-- `POST /classify` aceita **JSON** ou **multipart** com arquivo `.pdf`/`.txt`  
+
+- `POST /classify`  
+  Aceita **JSON** ou **multipart** (`.pdf` / `.txt`)  
 - **Facade de arquivos** (PDF/TXT → texto)  
-- **NLP** simples: lowercasing, remoção de stopwords, tokenização por regex  
-- **Classificador**:
-  - 🎯 **Rule-based** (padrão, sem custo)
-  - 🤖 **OpenAI LLM** (opcional via `OPENAI_API_KEY`)
-- **Resposta sugerida** automática e curta
-- `GET /health` para monitoramento
-- Swagger em `/docs`
-- `GET /logs` para consultar histórico de classificações (armazenadas em SQLite)
+- **NLP simples**: lowercasing, stopwords, tokenização regex  
+- **Classificação**:
+  - 🎯 Rule-based (padrão, sem custo)
+  - 🤖 OpenAI LLM (opcional via `OPENAI_API_KEY`)
+- **Resposta sugerida** curta e automática  
+- **Logs** persistidos em SQLite  
+- **IMAP Service**:
+  - `POST /imap/config` → conecta na caixa de entrada  
+  - `GET /imap/status` → status do serviço  
+  - `POST /imap/stop` → encerra o worker IMAP  
+  - Worker em thread (`ImapService`) que classifica periodicamente novos e-mails
+- Swagger em `/docs`  
+- `GET /health` para monitoramento  
 
 ---
 
 ## 🏗️ Arquitetura (Visão Lógica)
 
-**Fluxo**  
-1) **Entrada** → JSON direto *ou* upload `.pdf/.txt`  
-2) **Facade Files** → extrai texto e normaliza  
-3) **NLP** → `preprocess → tokenize`  
-4) **Classifier** → rule-based (default) *ou* LLM  
-5) **Responder** → mensagem curta coerente  
-6) **Persistência** → registro no banco SQLite  
-7) **Saída** → `category | reason | suggested_reply | tokens | custo`
-
-**DDD + Hexagonal**  
-- **Domain**: entidades (`Email`, `ClassificationResult`, `ClassificationLog`), portas (`TokenizerPort`, `ClassifierPort`, `ReplySuggesterPort`, `ProfilePort`, `LogRepositoryPort`), erros  
-- **Application**: `ClassifyEmailUseCase` + `FileFacade`  
-- **Infrastructure (adapters)**: extractors PDF/TXT, tokenizer simples, classifiers (rule-based, OpenAI), responder, repositórios SQL  
-- **Interfaces**: HTTP (FastAPI routers)
+**Fluxo via IMAP**
+1. Front envia `host, user, senha_app, mailbox, profile_id`  
+2. Backend sobe um **worker (thread)** com `ImapService`  
+3. Worker chama `SyncEmailsUseCase.run()` periodicamente  
+4. Cada e-mail:
+   - Tokenização → Classificação  
+   - Log persistido em SQLite  
+   - Mensagem movida para pasta (`Produtivos` ou `Improdutivos`)  
 
 ---
 
 ## 📁 Estrutura de Pastas
 
-```
+```bash
 email_classifier/
 ├─ app/
-│  ├─ main.py
-│  ├─ config.py
-│  ├─ bootstrap.py
-│  ├─ interfaces/http/routers.py
+│  ├─ main.py                  # inicialização FastAPI
+│  ├─ config.py                # configs/env
+│  ├─ bootstrap.py             # DI bootstrap
+│  ├─ interfaces/http/         # rotas HTTP
+│  │   ├─ classify_router.py
+│  │   ├─ logs_router.py
+│  │   └─ imap_router.py       # rotas /imap/*
 │  ├─ application/
-│  │   ├─ dto.py
-│  │   └─ use_cases/classify_email.py
+│  │   └─ use_cases/
+│  │        ├─ classify_email.py
+│  │        └─ sync_emails.py  # UseCase IMAP
 │  ├─ domain/
 │  │   ├─ entities.py
 │  │   ├─ ports.py
-│  │   ├─ errors.py
 │  │   └─ value_objects.py
 │  └─ infrastructure/
-│      ├─ extractors/
+│      ├─ email_sources/
+│      │   ├─ imap_adapter.py  # adapter IMAP
+│      │   └─ imap_service.py  # worker com start/stop
 │      ├─ nlp/tokenizer_simple.py
 │      ├─ classifiers/
-│      ├─ responders/simple_templates.py
-│      ├─ repositories/sql_log_repository.py
-│      └─ models.py
+│      ├─ responders/
+│      └─ repositories/sql_log_repository.py
 ├─ requirements.txt
 ├─ Dockerfile
 └─ .env.example
@@ -69,69 +78,92 @@ email_classifier/
 
 ---
 
-## 📦 Dependências e Motivações
+## 📦 Dependências
 
-- **fastapi / uvicorn** → servidor web moderno e performático  
-- **pydantic** → validação de entrada/saída  
-- **python-multipart** → suporte a upload de arquivos  
-- **pypdf** → leitura de PDFs textuais  
-- **slowapi + limits** → rate limiting para proteção da API  
-- **sqlalchemy + sqlmodel** → persistência simples em SQLite, modelo ORM enxuto  
-- **sqlite** (via SQLModel) → banco leve, embarcado, ideal para logs temporários de classificação  
-  - usado para **armazenar histórico de requisições** e testar diferentes modelos de IA com as mesmas entradas, ajudando a **afiar a IA** sem perder rastreabilidade  
+- **fastapi / uvicorn** → API moderna  
+- **pydantic** → validação  
+- **sqlalchemy + sqlmodel** → persistência (SQLite)  
+- **imaplib** → integração IMAP  
+- **pypdf** → parsing de PDF  
+- **python-multipart** → upload de arquivos  
+- **slowapi** → rate limiting  
 
 ---
 
 ## ▶️ Como Rodar (Local)
 
+### 1. Backend
 ```bash
 pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Acesse:
-- API: `http://127.0.0.1:8000`
-- Docs: `http://127.0.0.1:8000/docs`
+### 2. Frontend (Next.js)
+```bash
+cd email-classifier-frontend
+pnpm dev
+```
+
+> Defina `NEXT_PUBLIC_API_URL=http://localhost:8000`
 
 ---
 
 ## 🔌 Endpoints
 
-### `GET /health`
+### Health
+`GET /health`
 ```json
 {"status": "ok"}
 ```
 
-### `POST /classify`
-Aceita JSON ou arquivo (`.pdf` / `.txt`), normaliza, classifica e retorna resultado.
+### Classificação manual
+`POST /classify` → via JSON ou upload (`.pdf/.txt`)
 
-### `GET /logs`
-Retorna histórico de classificações persistidas em SQLite.  
-Exemplo:
-```json
-[
-  {
-    "id": 1,
-    "created_at": "2025-09-14T15:17:01.032369",
-    "subject": "Proposta e orçamento",
+### Logs
+`GET /logs` → histórico em SQLite
+
+### IMAP
+- `POST /imap/config` → inicia serviço IMAP  
+- `GET /imap/status` → status atual  
+- `POST /imap/stop` → encerra serviço  
+
+---
+
+## 🧪 Exemplo — Iniciar IMAP
+
+```bash
+curl -X POST http://127.0.0.1:8000/imap/config   -H "Content-Type: application/json"   -d '{
+    "host": "imap.gmail.com",
+    "user": "seuemail@gmail.com",
+    "password": "senha_app_google",
+    "mailbox": "INBOX",
     "profile_id": "default",
-    "category": "productive",
-    "reason": "mensagem relacionada a proposta, orçamento e cronograma",
-    "suggested_reply": "Olá! Obrigado pelo contato..."
-  }
-]
+    "interval": 10
+  }'
+```
+
+Resposta:
+```json
+{
+  "status": "imap running",
+  "profile_id": "default",
+  "host": "imap.gmail.com",
+  "mailbox": "INBOX",
+  "interval": 10
+}
 ```
 
 ---
 
-## 📍 Próximos passos
+## 📍 Roadmap Futuro
 
-- Métricas de latência/custo direto no log  
-- Testar diferentes LLMs em batch com o mesmo dataset (aproveitando o SQLite)  
-- Criar painel para explorar os logs  
-- Expandir NLP (stemming/lemmatização, multilíngue)  
+- Métricas de custo/latência em cada log  
+- Dashboard web para explorar logs  
+- Suporte multi-conta IMAP  
+- Stemming, lematização e multilíngue  
+- Plug-and-play para outros LLMs  
 
 ---
 
 ## 📜 Licença
-Uso livre neste desafio técnico. Se for publicar, considere **MIT**.
+MIT — uso livre para protótipos e estudo.
