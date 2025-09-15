@@ -12,8 +12,6 @@ class ImapService:
         self.interval = interval
         self._stop_event = threading.Event()
         self._thread: threading.Thread | None = None
-
-        # ✅ Tokenizer instanciado aqui
         self.tokenizer = SimpleTokenizer(lang="auto")
 
     def start(self):
@@ -41,14 +39,13 @@ class ImapService:
         while not self._stop_event.is_set():
             try:
                 print("[DEBUG] Chamando use_case.run()")
-                use_case.run()
-            except Exception as e:
+                use_case.run(stop_event=self._stop_event)   # <-- passa o evento
+            except Exception:
                 import traceback
                 print("[ERROR] Falha no use_case.run():")
                 traceback.print_exc()
             self._stop_event.wait(self.interval)
 
-    # 🔎 Propriedade para saber se está rodando
     @property
     def is_running(self) -> bool:
         return self._thread is not None and self._thread.is_alive()

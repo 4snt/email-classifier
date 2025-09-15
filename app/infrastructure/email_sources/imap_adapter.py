@@ -1,5 +1,4 @@
 import imaplib, email
-from typing import List
 from app.domain.entities import Email
 from app.domain.ports import EmailSourcePort
 
@@ -10,7 +9,7 @@ class ImapEmailSource(EmailSourcePort):
         self.user = user
         self.password = password
         self.mailbox = mailbox
-        self.conn = None
+        self.conn: imaplib.IMAP4_SSL | None = None
 
     def _connect(self):
         if not self.conn:
@@ -44,6 +43,7 @@ class ImapEmailSource(EmailSourcePort):
                 sender=msg.get("from"),
                 body=body,
             )
+
     def mark_as_read(self, ids: list[str]) -> None:
         self._connect()
         for msg_id in ids:
@@ -53,20 +53,17 @@ class ImapEmailSource(EmailSourcePort):
         self._connect()
         print(f"[DEBUG] Movendo mensagem {msg_id} para '{folder}'")
 
-        # tenta criar a pasta se não existir
         try:
             self.conn.create(folder)
         except:
             pass
 
         try:
-            # Gmail específico
             status, resp = self.conn.store(msg_id, '+X-GM-LABELS', f'({folder})')
             print(f"[DEBUG] Gmail store +X-GM-LABELS -> {status}, {resp}")
         except Exception as e:
             print(f"[WARN] Gmail labels não suportadas, usando fallback: {e}")
             try:
-                # IMAP genérico: copia para pasta e deleta do original
                 self.conn.copy(msg_id, folder)
                 self.conn.store(msg_id, "+FLAGS", "\\Deleted")
                 self.conn.expunge()
@@ -75,10 +72,8 @@ class ImapEmailSource(EmailSourcePort):
                 print(f"[ERROR] Falha ao mover mensagem {msg_id} para {folder}: {e2}")
                 return
 
-        # marcar sempre como lido
         try:
             status, resp = self.conn.store(msg_id, "+FLAGS", "\\Seen")
             print(f"[DEBUG] store +FLAGS \\Seen -> {status}, {resp}")
         except Exception as e:
             print(f"[WARN] Não conseguiu marcar como lido: {e}")
-
