@@ -106,33 +106,54 @@ Versão atual: inclusão da rota `/logs` e do **repositório SQLite**, centraliz
 
 ```bash
 email_classifier/
-├─ app/
-│  ├─ main.py                  # inicialização FastAPI
-│  ├─ config.py                # configs/env
-│  ├─ bootstrap.py             # DI bootstrap
-│  ├─ interfaces/http/         # rotas HTTP
-│  │   ├─ classify_router.py
-│  │   ├─ logs_router.py
-│  │   └─ imap_router.py       # rotas /imap/*
-│  ├─ application/
-│  │   └─ use_cases/
-│  │        ├─ classify_email.py
-│  │        └─ sync_emails.py  # UseCase IMAP
-│  ├─ domain/
-│  │   ├─ entities.py
-│  │   ├─ ports.py
-│  │   └─ value_objects.py
-│  └─ infrastructure/
-│      ├─ email_sources/
-│      │   ├─ imap_adapter.py  # adapter IMAP
-│      │   └─ imap_service.py  # worker com start/stop
-│      ├─ nlp/tokenizer_simple.py
-│      ├─ classifiers/
-│      ├─ responders/
-│      └─ repositories/sql_log_repository.py
-├─ requirements.txt
-├─ Dockerfile
-└─ .env.example
+app
+├── application
+│   ├── dto.py
+│   └── use_cases
+│       ├── classify_email.py
+│       └── sync_emails.py
+├── auth
+│   └── jwt.py
+├── bootstrap.py
+├── config.py
+├── data
+│   └── profiles.json
+├── domain
+│   ├── entities.py
+│   ├── errors.py
+│   └── ports.py
+├── infrastructure
+│   ├── classifiers
+│   │   ├── openai_llm.py
+│   │   ├── rule_based.py
+│   │   └── smart_classifier.py
+│   ├── db.py
+│   ├── email_sources
+│   │   ├── imap_adapter.py
+│   │   └── imap_service.py
+│   ├── extractors
+│   │   ├── direct_json.py
+│   │   ├── eml_extractor.py
+│   │   ├── pdf_extractor.py
+│   │   └── txt_extractor.py
+│   ├── models.py
+│   ├── nlp
+│   │   └── tokenizer_simple.py
+│   ├── profiles
+│   │   └── profile_json.py
+│   ├── repositories
+│   │   ├── sql_log_repository.py
+│   │   └── user_repository.py
+│   └── responders
+│       └── simple_templates.py
+├── interfaces
+│   └── http
+│       ├── imap_router.py
+│       └── routers.py
+├── main.py
+└── ratelimiting.py
+
+16 directories, 30 files
 ```
 
 ---
