@@ -24,6 +24,9 @@ class ImapConfig(BaseModel):
 
 @router.post("/config")
 def configure_imap(cfg: ImapConfig, session: Session = Depends(get_session)):
+    """
+    Configura e inicia o serviço IMAP para leitura de e-mails.
+    """
     global imap_service
     if imap_service:
         imap_service.stop()
@@ -52,16 +55,30 @@ def configure_imap(cfg: ImapConfig, session: Session = Depends(get_session)):
 
 @router.get("/status")
 def status_imap():
+    """
+    Retorna o status atual do serviço IMAP.
+    """
+    global imap_service
     if not imap_service:
         return {"status": "not configured"}
-    return {"status": "running", "profile_id": imap_service.profile_id}
+    return {
+        "status": "running" if imap_service.is_running else "stopped",
+        "profile_id": imap_service.profile_id,
+        "interval": imap_service.interval,
+        "mailbox": imap_service.source.mailbox,
+        "host": imap_service.source.host,
+    }
 
 
 @router.post("/stop")
 def stop_imap():
+    """
+    Interrompe o serviço IMAP se estiver em execução.
+    """
     global imap_service
-    if imap_service:
-        imap_service.stop()
-        imap_service = None
-        return {"status": "imap stopped"}
-    raise HTTPException(status_code=400, detail="No IMAP service running")
+    if not imap_service:
+        raise HTTPException(status_code=400, detail="No IMAP service running")
+
+    imap_service.stop()
+    imap_service = None
+    return {"status": "imap stopped"}

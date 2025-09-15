@@ -29,7 +29,7 @@ class ImapService:
             self._thread = None
 
     def _worker(self):
-        print("[DEBUG] Entrou no worker do ImapService")  # 👈 adiciona aqui
+        print("[DEBUG] Entrou no worker do ImapService")
         use_case = SyncEmailsUseCase(
             email_source=self.source,
             classifier=self.classifier,
@@ -39,11 +39,16 @@ class ImapService:
         )
 
         while not self._stop_event.is_set():
-                try:
-                    print("[DEBUG] Chamando use_case.run()")
-                    use_case.run()
-                except Exception as e:
-                    import traceback
-                    print("[ERROR] Falha no use_case.run():")
-                    traceback.print_exc()
-                self._stop_event.wait(self.interval)
+            try:
+                print("[DEBUG] Chamando use_case.run()")
+                use_case.run()
+            except Exception as e:
+                import traceback
+                print("[ERROR] Falha no use_case.run():")
+                traceback.print_exc()
+            self._stop_event.wait(self.interval)
+
+    # 🔎 Propriedade para saber se está rodando
+    @property
+    def is_running(self) -> bool:
+        return self._thread is not None and self._thread.is_alive()
