@@ -158,6 +158,40 @@ app
 
 ---
 
+# ⚙️ Configuração e Deploy do Backend
+
+Este documento descreve as variáveis de ambiente necessárias e o processo de deploy do backend do **Email Classifier** usando **Docker**.
+
+---
+
+## 📌 Variáveis de Ambiente (`.env`)
+
+As variáveis controlam o comportamento do classificador e da API.
+
+````env
+# Provedor de IA (atualmente: openai)
+AI_PROVIDER=openai
+
+# Chave de API para o provedor de IA
+OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxx
+
+# Ativar ou não o uso da IA (true = usa LLM, false = só regras)
+USE_OPENAI=true
+
+# Modelo padrão da OpenAI
+OPENAI_MODEL=gpt-4.1-mini
+
+# Origens permitidas (CORS)
+ALLOW_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+
+# Confiança mínima para classificador rule-based (0 a 1)
+RB_MIN_CONF=0.70
+
+# Máximo de caracteres do corpo do e-mail aceito
+MAX_BODY_CHARS=8000
+
+---
+
 ## 📦 Dependências
 
 - **fastapi / uvicorn** → API moderna
@@ -177,7 +211,7 @@ app
 ```bash
 pip install -r requirements.txt
 uvicorn app.main:app --reload
-```
+````
 
 ### 2. Frontend (Next.js)
 
