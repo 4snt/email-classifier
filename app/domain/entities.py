@@ -7,13 +7,13 @@ class Category(str, Enum):
     PRODUCTIVE = "productive"
     UNPRODUCTIVE = "unproductive"
 
-@dataclass(frozen=True)
+@dataclass
 class Email:
     subject: Optional[str]
     body: str
     sender: Optional[str] = None
-
-@dataclass(frozen=True)
+    
+@dataclass
 class ClassificationResult:
     category: Category
     reason: str
@@ -24,39 +24,35 @@ class ClassificationResult:
     total_tokens: Optional[int] = None
     extra: Optional[Dict[str, Any]] = None   
     
-@dataclass(frozen=True)
+@dataclass
 class ClassificationLog:
-    id: Optional[int]
-    created_at: datetime
-    source: str                  
-    subject: Optional[str]
-    body_excerpt: Optional[str]
-    sender: Optional[str]
-    file_name: Optional[str]
-    profile_id: Optional[str]
+    id: Optional[int] = None
+    created_at: datetime = datetime.utcnow()
+    source: str = "imap"
+    subject: Optional[str] = None
+    body_excerpt: Optional[str] = None
+    sender: Optional[str] = None
+    file_name: Optional[str] = None
+    profile_id: Optional[str] = None
 
-    # Saída
-    category: Optional[str]
-    reason: Optional[str]
-    suggested_reply: Optional[str]
+    category: Optional[str] = None
+    reason: Optional[str] = None
+    suggested_reply: Optional[str] = None
 
-    # Modelo usado
-    used_model: Optional[str]
-    provider: Optional[str]
-    prompt_tokens: Optional[int]
-    completion_tokens: Optional[int]
-    total_tokens: Optional[int]
-    cost_usd: Optional[float]
-    latency_ms: Optional[int]
+    used_model: Optional[str] = None
+    provider: Optional[str] = None
+    prompt_tokens: Optional[int] = None
+    completion_tokens: Optional[int] = None
+    total_tokens: Optional[int] = None
+    cost_usd: Optional[float] = None
+    latency_ms: Optional[int] = None
 
-    # Status
-    status: str
-    error: Optional[str]
+    status: str = "success"
+    error: Optional[str] = None
 
-    # Extra flexível
     extra: Optional[Dict[str, Any]] = None
     
-@dataclass(frozen=True)
+@dataclass
 class User:
     id: Optional[int]
     username: str

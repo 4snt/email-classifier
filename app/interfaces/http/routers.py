@@ -8,6 +8,7 @@ from fastapi import (
 )
 from fastapi.security import HTTPBearer
 from sqlmodel import Session
+from app.bootstrap import build_imap_deps
 
 from app.application.dto import DirectJson, ClassifyResponse
 from app.bootstrap import build_use_case
@@ -22,6 +23,7 @@ from app.application.dto import LoginResponse, LoginRequest
 router = APIRouter()
 uc = build_use_case()
 security = HTTPBearer()
+classifier, repo = build_imap_deps()
 
 SECRET_KEY = os.getenv("JWT_SECRET", "dev-secret")
 ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")

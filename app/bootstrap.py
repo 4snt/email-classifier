@@ -15,32 +15,20 @@ from app.config import settings
 
 
 def build_use_case():
-    # DB (SQLite) + session
+    """Constrói o caso de uso para classificação via API HTTP"""
     init_db()
     session = next(get_session())
 
-    # Repositório de logs
     log_repo = SqlLogRepository(session=session)
 
-    # Extractors de arquivo
     facade = FileFacade(
         pdf_extractor=PdfExtractor(),
         txt_extractor=TxtExtractor(),
         eml_extractor=EmlExtractor(),
     )
 
-    # Tokenizer multilíngue (pt/en/es) com auto-detecção
     tokenizer = SimpleTokenizer(lang="auto")
-
-    # Classificadores: rule-based sempre; LLM opcional com gating
-    rule = RuleBasedClassifier()
-    if getattr(settings, "USE_OPENAI", False):
-        llm = OpenAIClassifier()
-        min_conf = getattr(settings, "RB_MIN_CONF", 0.70)  # chama LLM só se RB < 0.70
-        classifier = SmartClassifier(rule_based=rule, llm=llm, min_conf=min_conf)
-    else:
-        classifier = rule
-
+    classifier = build_classifier()
     responder = SimpleResponder()
     profiles = JsonProfileAdapter()
 
@@ -52,3 +40,24 @@ def build_use_case():
         profiles=profiles,
         log_repo=log_repo,
     )
+
+
+def build_classifier():
+    """Retorna o classificador (rule-based + opcional LLM)"""
+    rule = RuleBasedClassifier()
+    if getattr(settings, "USE_OPENAI", False):
+        llm = OpenAIClassifier()
+        min_conf = getattr(settings, "RB_MIN_CONF", 0.70)
+        return SmartClassifier(rule_based=rule, llm=llm, min_conf=min_conf)
+    return rule
+
+
+def build_imap_deps():
+    """Fornece classifier e log_repo para o serviço IMAP"""
+    init_db()
+    session = next(get_session())
+    log_repo = SqlLogRepository(session=session)
+
+    classifier = build_classifier()
+
+    return classifier, log_repo
